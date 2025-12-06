@@ -27,9 +27,9 @@ Per commentare/decommentare il codice velocemente puoi usare la
 combinazione di tasti Control + 1
 """
 
-nome = "NOME"
-cognome = "COGNOME"
-matricola = "MATRICOLA"
+nome = "ALESSIO"
+cognome = "RENZETTI"
+matricola = "2251961"
 
 # %% ----------------------------------- FUNC1 ------------------------- #
 
@@ -47,6 +47,17 @@ altre funzioni o classi).
 
 
 def func1(l: List, counts: Dict = None) -> Dict:
+    if counts is None:
+        counts = {}
+    if len(l) == 0:
+        return counts
+    
+    currentN=l[0]
+    if currentN in counts:
+        counts[currentN] +=  1
+    else:
+        counts[currentN] = 1
+    return func1(l[1:],counts)
     pass
 
 
@@ -86,11 +97,32 @@ interne (ossia, le funzioni ricorsive possono solo essere definite al livello
 più alto del modulo e non possono essere definite all'interno di 
 altre funzioni o classi). 
 """
-
+def ric2(root,diz,lista):
+    if len(lista)==0:
+        return diz
+    if ".txt" in lista[0]:
+        with open(root+"/"+lista[0],"r",encoding="utf-8")as f:
+            content=f.read()
+            if content[0] == content[len(content)-1]:
+                if root not in diz:
+                    diz[root]={lista[0]}
+                    return ric2(root,diz,lista[1:])
+                else:
+                    diz[root].add(lista[0])
+                    return ric2(root,diz,lista[1:])
+            else:
+                return ric2(root,diz,lista[1:])
+    elif ".py" in lista[0]:
+        return ric2(root,diz,lista[1:])
+    else:
+        ric2(root+"/"+lista[0],diz,os.listdir(root+"/"+lista[0]))
+        return ric2(root,diz,lista[1:])
 
 def func2(root):
+    diz={}
+    return ric2(root,diz,os.listdir(root))
     pass
-
+# print(func2("func2/A"))
 
 #%% ----------------------------------- FUNC3 ------------------------- #
 """ func3: 5 punti 
@@ -128,9 +160,13 @@ altre funzioni o classi).
 
 
 def func3(a: int, b: int) -> int:
+    if b==0:
+        return a
+    else:
+        return func3(b,a%b)
     pass
 
-
+# print(func3(48,18))
 # ---------------------------- FUNC 4 ---------------------------- #
 """ func4: 10 punti
 

@@ -26,7 +26,7 @@ import program
 ####
 #### Mettete DEBUG=True per disattivare i test di ricorsione  e
 #### fare debug delle funzioni più facilmente attivando stack trace
-DEBUG = False
+DEBUG = True
 
 
 #############################################################################
@@ -410,12 +410,12 @@ def test_func4_4():
 tests = [
     # TO RUN ONLY SOME OF THE TESTS, comment any of the following entries
     # PER DISATTIVARE ALCUNI TEST, commentare gli elementi seguenti
-    test_func1_1, test_func1_2, test_func1_3,  # 6
-    test_func2_1, test_func2_2, test_func2_3,  # 9
+    #test_func1_1, test_func1_2, test_func1_3,  # 6
+    # test_func2_1, test_func2_2, test_func2_3,  # 9
     test_func3_1, test_func3_2, test_func3_3, test_func3_4,  # 4
-    test_func3_5,                                            # 1
-    test_func4_1, test_func4_2, test_func4_3, test_func4_4,  # 10
-    test_personal_data_entry,
+    # test_func3_5,                                            # 1
+    # test_func4_1, test_func4_2, test_func4_3, test_func4_4,  # 10
+    # test_personal_data_entry,
 ]
 
 if __name__ == '__main__':
