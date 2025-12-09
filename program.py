@@ -197,9 +197,32 @@ maggiore del valore k preso in input.
     Se l'albero è quello di destra e k=3, la funzione ritorna la coppia
     -22, 6.
 """
+def ris4(root,k,cont):
+    if root is None:
+        return (0,0)
+    (somma_sx, cont_sx)= ris4(root.left,k,cont+1)
+    (somma_dx, cont_dx)= ris4(root.right,k,cont+1)
+
+    valore=0
+    if cont%2==0:
+        valore= root.value
+    else:
+        valore= -root.value
+
+    contK=0
+    if root.value > k:
+        contK=1
+
+    totale_somma = valore + somma_sx + somma_dx
+    totale_count = contK + cont_sx + cont_dx
+    
+    return (totale_somma, totale_count)     
+
+
 
 
 def func4(root, k):
+    return ris4(root,k,0)
     pass
 
 
